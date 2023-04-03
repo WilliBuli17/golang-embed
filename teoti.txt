@@ -1,0 +1,43 @@
+-- Embed Package
+        1 .Sejak Golang versi 1.16, terdapat package baru dengan nama embed
+        2. Package embed adalah fitur baru untuk mempermudah membaca isi file pada saat compile time secara otomatis dimasukkan
+           isi file nya dalam variable
+           https://golang.org/pkg/embed/
+
+        --  Cara Embed File
+                1. Untuk melakukan embed file ke variable, kita bisa mengimport package embed terlebih dahulu
+                2. Selajutnya kita bisa tambahkan komentar //go:embed diikuti dengan nama file nya, diatas variable yang kita tuju
+                3. Variable yang dituju tersebut nanti secara otomatis akan berisi konten file yang kita inginkan secara otomatis
+                   ketika kode golang di compile
+                4. Variable yang dituju tidak bisa disimpan di dalam function
+
+        -- Embed File ke String
+                1. Embed file bisa kita lakukan ke variable dengan tipe data string
+                2. Secara otomatis isi file akan dibaca sebagai text dan masukkan ke variable tersebut
+
+        -- Embed File ke Byte[]
+                1. Selain ke tipe data String, embed file juga bisa dilakukan ke variable tipe data []byte
+                2. Ini cocok sekali jika kita ingin melakukan embed file dalam bentuk binary, seperti gambar dan lain-lain
+
+        -- Embed Multiple Files
+                1. Kadang ada kebutuhan kita ingin melakukan embed beberapa file sekaligus
+                2. Hal ini juga bisa dilakukan menggunakan embed package
+                3. Kita bisa menambahkan komentar //go:embed lebih dari satu baris
+                4. Selain itu variable nya bisa kita gunakan tipe data embed.FS
+
+        -- Path Matcher
+                1. Selain manual satu per satu, kita bisa mengguakan patch matcher untuk membaca multiple file yang kita inginkan
+                2. Ini sangat cocok ketika misal kita punya pola jenis file yang kita inginkan untuk kita baca
+                3. Caranya, kita perlu menggunakan path matcher seperti pada package function path.Match
+
+        -- Hasil Embed di Compile
+                1. Perlu diketahui, bahwa hasil embed yang dilakukan oleh package embed adalah permanent dan data file yang
+                   dibaca disimpan dalam binary file golang nya
+                2. Artinya bukan dilakukan secara realtime membaca file yang ada diluar
+                3. Hal ini menjadikan jika binary file golang sudah di compile, kita tidak butuh lagi file external nya,
+                   dan bahkan jika diubah file external nya, isi variable nya tidak akan berubah lagi
+
+
+
+
+
